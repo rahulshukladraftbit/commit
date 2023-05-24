@@ -2,7 +2,7 @@ import React from 'react';
 import { ScreenContainer, withTheme } from '@draftbit/ui';
 import { useWindowDimensions } from 'react-native';
 
-const BlankScreen = props => {
+const BlankCopyScreen = props => {
   const dimensions = useWindowDimensions();
 
   const { theme } = props;
@@ -10,4 +10,4 @@ const BlankScreen = props => {
   return <ScreenContainer scrollable={false} hasSafeArea={false} />;
 };
 
-export default withTheme(BlankScreen);
+export default withTheme(BlankCopyScreen);

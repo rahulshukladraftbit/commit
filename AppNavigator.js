@@ -8,7 +8,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import theme from './themes/DraftbitTheme.js';
 import LinkingConfiguration from './LinkingConfiguration.js';
 
+import BlankCopyCopyScreen from './screens/BlankCopyCopyScreen';
+import BlankCopyScreen from './screens/BlankCopyScreen';
 import BlankScreen from './screens/BlankScreen';
+import MedicineDeliveredSuccessScreen from './screens/MedicineDeliveredSuccessScreen';
+import SelectProfileScreen from './screens/SelectProfileScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -72,6 +76,34 @@ export default function RootAppNavigator() {
           component={BlankScreen}
           options={{
             title: 'Blank',
+          }}
+        />
+        <Stack.Screen
+          name="BlankCopyScreen"
+          component={BlankCopyScreen}
+          options={{
+            title: 'Blank Copy',
+          }}
+        />
+        <Stack.Screen
+          name="BlankCopyCopyScreen"
+          component={BlankCopyCopyScreen}
+          options={{
+            title: 'Blank Copy Copy',
+          }}
+        />
+        <Stack.Screen
+          name="SelectProfileScreen"
+          component={SelectProfileScreen}
+          options={{
+            title: 'Select Profile',
+          }}
+        />
+        <Stack.Screen
+          name="MedicineDeliveredSuccessScreen"
+          component={MedicineDeliveredSuccessScreen}
+          options={{
+            title: 'Medicine Delivered Success',
           }}
         />
       </Stack.Navigator>

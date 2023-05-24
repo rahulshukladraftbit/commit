@@ -13,6 +13,7 @@ import AppNavigator from './AppNavigator';
 import DraftbitTheme from './themes/DraftbitTheme.js';
 import cacheAssetsAsync from './config/cacheAssetsAsync';
 import { GlobalVariableProvider } from './config/GlobalVariableContext';
+import { useFonts } from 'expo-font';
 SplashScreen.preventAutoHideAsync();
 
 Notifications.setNotificationHandler({
@@ -27,7 +28,14 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [isReady, setIsReady] = React.useState(false);
-  const fontsLoaded = true;
+  const [fontsLoaded] = useFonts({
+    Inter_300Light:
+      'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfMZhrib2Bg-4.ttf',
+    Inter_400Regular:
+      'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf',
+    Inter_500Medium:
+      'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fMZhrib2Bg-4.ttf',
+  });
 
   React.useEffect(() => {
     async function prepare() {

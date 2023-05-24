@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "My App 8",
-    "slug": "my-app8",
-    "scheme": "untitled-app",
-    "description": "My app powered by Draftbit",
+    "name": "Noba Reserve Copy",
+    "slug": "noba-reserve",
+    "scheme": "nobareserve",
+    "description": "Noba provides all the financial tools you need to build wealth and fight inflation.",
     "privacy": "unlisted",
     "platforms": [
       "ios",
@@ -11,12 +11,12 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./assets/app/icon.png",
     "splash": {
       "image": "./assets/app/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#5A45FF"
+      "backgroundColor": "#004252"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -31,7 +31,10 @@
     "android": {
       "versionCode": 1,
       "package": "com.draftbit.untitledapp",
-      "permissions": []
+      "permissions": [
+        "READ_CONTACTS",
+        "CAMERA"
+      ]
     },
     "web": {
       "display": null,

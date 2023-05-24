@@ -8,11 +8,40 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import theme from './themes/DraftbitTheme.js';
 import LinkingConfiguration from './LinkingConfiguration.js';
 
-import BlankCopyCopyScreen from './screens/BlankCopyCopyScreen';
-import BlankCopyScreen from './screens/BlankCopyScreen';
-import BlankScreen from './screens/BlankScreen';
-import MedicineDeliveredSuccessScreen from './screens/MedicineDeliveredSuccessScreen';
-import SelectProfileScreen from './screens/SelectProfileScreen';
+import AccountHistoryScreen from './screens/AccountHistoryScreen';
+import AccountLimitsScreen from './screens/AccountLimitsScreen';
+import AccountOrderHistoryDetailedScreen from './screens/AccountOrderHistoryDetailedScreen';
+import AccountRedeemPromoScreen from './screens/AccountRedeemPromoScreen';
+import AuthenticatedPrimaryScreen from './screens/AuthenticatedPrimaryScreen';
+import CardsManageScreen from './screens/CardsManageScreen';
+import ContactsPermissionsScreen from './screens/ContactsPermissionsScreen';
+import CryptoAboutScreen from './screens/CryptoAboutScreen';
+import CryptoBuyScreen from './screens/CryptoBuyScreen';
+import CryptoOrderSubmittedScreen from './screens/CryptoOrderSubmittedScreen';
+import CryptoOrderSummaryScreen from './screens/CryptoOrderSummaryScreen';
+import DepositAmountScreen from './screens/DepositAmountScreen';
+import DepositOrderSubmittedScreen from './screens/DepositOrderSubmittedScreen';
+import DepositOrderSummaryScreen from './screens/DepositOrderSummaryScreen';
+import DepositWireCOPScreen from './screens/DepositWireCOPScreen';
+import DepositWireUSDScreen from './screens/DepositWireUSDScreen';
+import IdentityVerificationAu10tixScreen from './screens/IdentityVerificationAu10tixScreen';
+import IdentityVerificationTaxIDScreen from './screens/IdentityVerificationTaxIDScreen';
+import LoginEmailOTPScreen from './screens/LoginEmailOTPScreen';
+import LoginScreen from './screens/LoginScreen';
+import OnboardingAddressScreen from './screens/OnboardingAddressScreen';
+import OnboardingDOBScreen from './screens/OnboardingDOBScreen';
+import OnboardingHandleScreen from './screens/OnboardingHandleScreen';
+import OnboardingIncompleteScreen from './screens/OnboardingIncompleteScreen';
+import OnboardingNameScreen from './screens/OnboardingNameScreen';
+import OnboardingPhoneVerificationOTPScreen from './screens/OnboardingPhoneVerificationOTPScreen';
+import OnboardingUSSSNScreen from './screens/OnboardingUSSSNScreen';
+import PaymentsAddCardScreen from './screens/PaymentsAddCardScreen';
+import PaymentsCardSelectScreen from './screens/PaymentsCardSelectScreen';
+import PaymentsManageScreen from './screens/PaymentsManageScreen';
+import PaymentsMethodTypeScreen from './screens/PaymentsMethodTypeScreen';
+import PaymentsSelectScreen from './screens/PaymentsSelectScreen';
+import Peer2PeerContactsScreen from './screens/Peer2PeerContactsScreen';
+import QRScreen from './screens/QRScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -70,40 +99,247 @@ function Placeholder() {
 export default function RootAppNavigator() {
   return (
     <NavigationContainer linking={LinkingConfiguration}>
-      <Stack.Navigator>
+      <Stack.Navigator
+        mode="modal"
+        headerMode="none"
+        initialRouteName="LoadingScreen"
+      >
         <Stack.Screen
-          name="BlankScreen"
-          component={BlankScreen}
+          name="LoginScreen"
+          component={LoginScreen}
           options={{
-            title: 'Blank',
+            title: 'Login',
           }}
         />
         <Stack.Screen
-          name="BlankCopyScreen"
-          component={BlankCopyScreen}
+          name="QRScreen"
+          component={QRScreen}
           options={{
-            title: 'Blank Copy',
+            title: 'QR Screen',
           }}
         />
         <Stack.Screen
-          name="BlankCopyCopyScreen"
-          component={BlankCopyCopyScreen}
+          name="LoginEmailOTPScreen"
+          component={LoginEmailOTPScreen}
           options={{
-            title: 'Blank Copy Copy',
+            title: 'Login Email OTP',
           }}
         />
         <Stack.Screen
-          name="SelectProfileScreen"
-          component={SelectProfileScreen}
+          name="AuthenticatedPrimaryScreen"
+          component={AuthenticatedPrimaryScreen}
           options={{
-            title: 'Select Profile',
+            title: 'AuthenticatedPrimary',
           }}
         />
         <Stack.Screen
-          name="MedicineDeliveredSuccessScreen"
-          component={MedicineDeliveredSuccessScreen}
+          name="CryptoAboutScreen"
+          component={CryptoAboutScreen}
           options={{
-            title: 'Medicine Delivered Success',
+            title: 'Crypto About',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsMethodTypeScreen"
+          component={PaymentsMethodTypeScreen}
+          options={{
+            title: 'Payments Method Type',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsAddCardScreen"
+          component={PaymentsAddCardScreen}
+          options={{
+            title: 'Payments Add Card',
+          }}
+        />
+        <Stack.Screen
+          name="OnboardingNameScreen"
+          component={OnboardingNameScreen}
+          options={{
+            title: 'Onboarding Name',
+          }}
+        />
+        <Stack.Screen
+          name="OnboardingAddressScreen"
+          component={OnboardingAddressScreen}
+          options={{
+            title: 'Onboarding Address',
+          }}
+        />
+        <Stack.Screen
+          name="OnboardingDOBScreen"
+          component={OnboardingDOBScreen}
+          options={{
+            title: 'Onboarding DOB',
+          }}
+        />
+        <Stack.Screen
+          name="IdentityVerificationTaxIDScreen"
+          component={IdentityVerificationTaxIDScreen}
+          options={{
+            title: 'Identity Verification Tax ID',
+          }}
+        />
+        <Stack.Screen
+          name="OnboardingPhoneVerificationOTPScreen"
+          component={OnboardingPhoneVerificationOTPScreen}
+          options={{
+            title: 'Onboarding Phone Verification OTP',
+          }}
+        />
+        <Stack.Screen
+          name="IdentityVerificationAu10tixScreen"
+          component={IdentityVerificationAu10tixScreen}
+          options={{
+            title: 'Identity Verification Au10tix',
+          }}
+        />
+        <Stack.Screen
+          name="AccountLimitsScreen"
+          component={AccountLimitsScreen}
+          options={{
+            title: 'Account Limits',
+          }}
+        />
+        <Stack.Screen
+          name="CardsManageScreen"
+          component={CardsManageScreen}
+          options={{
+            title: 'Cards Manage',
+          }}
+        />
+        <Stack.Screen
+          name="DepositWireCOPScreen"
+          component={DepositWireCOPScreen}
+          options={{
+            title: 'Deposit Wire COP',
+          }}
+        />
+        <Stack.Screen
+          name="DepositWireUSDScreen"
+          component={DepositWireUSDScreen}
+          options={{
+            title: 'Deposit Wire USD',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsCardSelectScreen"
+          component={PaymentsCardSelectScreen}
+          options={{
+            title: 'Payments Card Select',
+          }}
+        />
+        <Stack.Screen
+          name="CryptoBuyScreen"
+          component={CryptoBuyScreen}
+          options={{
+            title: 'Crypto Buy',
+          }}
+        />
+        <Stack.Screen
+          name="CryptoOrderSubmittedScreen"
+          component={CryptoOrderSubmittedScreen}
+          options={{
+            title: 'Crypto Order Submitted',
+          }}
+        />
+        <Stack.Screen
+          name="Peer2PeerContactsScreen"
+          component={Peer2PeerContactsScreen}
+          options={{
+            title: 'Peer2Peer Contacts',
+          }}
+        />
+        <Stack.Screen
+          name="ContactsPermissionsScreen"
+          component={ContactsPermissionsScreen}
+          options={{
+            title: 'Contacts Permissions',
+          }}
+        />
+        <Stack.Screen
+          name="DepositAmountScreen"
+          component={DepositAmountScreen}
+          options={{
+            title: 'Deposit Amount',
+          }}
+        />
+        <Stack.Screen
+          name="CryptoOrderSummaryScreen"
+          component={CryptoOrderSummaryScreen}
+          options={{
+            title: 'Crypto Order Summary',
+          }}
+        />
+        <Stack.Screen
+          name="OnboardingIncompleteScreen"
+          component={OnboardingIncompleteScreen}
+          options={{
+            title: 'Onboarding Incomplete',
+          }}
+        />
+        <Stack.Screen
+          name="DepositOrderSummaryScreen"
+          component={DepositOrderSummaryScreen}
+          options={{
+            title: 'Deposit Order Summary',
+          }}
+        />
+        <Stack.Screen
+          name="DepositOrderSubmittedScreen"
+          component={DepositOrderSubmittedScreen}
+          options={{
+            title: 'Deposit Order Submitted',
+          }}
+        />
+        <Stack.Screen
+          name="AccountHistoryScreen"
+          component={AccountHistoryScreen}
+          options={{
+            title: 'Account History',
+          }}
+        />
+        <Stack.Screen
+          name="AccountOrderHistoryDetailedScreen"
+          component={AccountOrderHistoryDetailedScreen}
+          options={{
+            title: 'Account Order History Detailed',
+          }}
+        />
+        <Stack.Screen
+          name="AccountRedeemPromoScreen"
+          component={AccountRedeemPromoScreen}
+          options={{
+            title: 'Account Redeem Promo',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsSelectScreen"
+          component={PaymentsSelectScreen}
+          options={{
+            title: 'Payments Select',
+          }}
+        />
+        <Stack.Screen
+          name="PaymentsManageScreen"
+          component={PaymentsManageScreen}
+          options={{
+            title: 'Payments Manage',
+          }}
+        />
+        <Stack.Screen
+          name="OnboardingUSSSNScreen"
+          component={OnboardingUSSSNScreen}
+          options={{
+            title: 'Onboarding US SSN',
+          }}
+        />
+        <Stack.Screen
+          name="OnboardingHandleScreen"
+          component={OnboardingHandleScreen}
+          options={{
+            title: 'Onboarding Handle',
           }}
         />
       </Stack.Navigator>

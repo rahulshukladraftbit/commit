@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Noba Reserve Copy",
-    "slug": "noba-reserve",
-    "scheme": "nobareserve",
-    "description": "Noba provides all the financial tools you need to build wealth and fight inflation.",
+    "name": "Github Commit",
+    "slug": "github-commit",
+    "scheme": "untitled-app",
+    "description": "My app powered by Draftbit",
     "privacy": "unlisted",
     "platforms": [
       "ios",
@@ -11,12 +11,12 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/app/icon.png",
     "splash": {
       "image": "./assets/app/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#004252"
+      "backgroundColor": "#5A45FF"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -31,10 +31,7 @@
     "android": {
       "versionCode": 1,
       "package": "com.draftbit.untitledapp",
-      "permissions": [
-        "READ_CONTACTS",
-        "CAMERA"
-      ]
+      "permissions": []
     },
     "web": {
       "display": null,

@@ -9,6 +9,15 @@ async function registerForPushNotificationsAsync({
   let token;
 
   if (Device.isDevice) {
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
+    }
+
     const { status: existingStatus } =
       await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
@@ -27,15 +36,6 @@ async function registerForPushNotificationsAsync({
     token = (await Notifications.getExpoPushTokenAsync()).data;
   } else {
     alert(deviceMessage ?? 'Must use physical device for Push Notifications');
-  }
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
   }
 
   return token;

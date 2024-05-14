@@ -13,10 +13,10 @@ Remember, at any point you can go back to [build.draftbit.com](https://build.dra
 there!
 
 ## Requirements
-- [Node.js LTS release](https://nodejs.org/en/). As of 07/21 this is 14.17+
-- [Expo CLI](https://docs.expo.io/get-started/installation)
+
+- [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
-- [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall) for macOS users
+- [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall) for macOS and Linux users
 - [Yarn](https://classic.yarnpkg.com/en/docs/install) use this over `npm install` when installing dependencies
 
 > Only Node.js LTS releases (even-numbered) are recommended. As Node.js [officially states](https://nodejs.org/en/about/releases/), "Production applications should only use Active LTS or Maintenance LTS releases."
@@ -24,16 +24,15 @@ there!
 ## Recommended Tools
 
 - [VSCode Editor](https://code.visualstudio.com/download)
-  - [VSCode Expo Extension](https://marketplace.visualstudio.com/items?itemName=byCedric.vscode-expo) for `app.json` debugging and autocomplete.
+  - [VSCode Expo Extension](https://marketplace.visualstudio.com/items?itemName=expo.vscode-expo-tools) for `app.json` debugging and autocomplete.
 - Windows users: [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows), Bash via WSL, or the VSCode terminal.
 - Expo Go for iOS and Android
-  - 🤖  [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent) - Android Lollipop (5) and greater.
-  - 🍎  [iOS App Store](https://itunes.com/apps/exponent) - iOS 11 and greater.
-
+  - 🤖 [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent) - Android Lollipop (5) and greater.
+  - 🍎 [iOS App Store](https://itunes.com/apps/exponent) - iOS 11 and greater.
 
 ## Installing Node.js
 
-You can install Node by going to the [website directly](https://nodejs.org/en/) and clicking the side that says "Recommended For Most Users". This will guide you through the process. 
+You can install Node by going to the [website directly](https://nodejs.org/en/) and clicking the side that says "Recommended For Most Users". This will guide you through the process.
 
 Once Node has been installed, run the following on the command line to make sure
 it's been installed correctly:
@@ -49,25 +48,12 @@ For example,
 
 ```
 $ node -v
-v14.17.3
+v16.15.1
 ```
 
-[Learn more about installing Nodejs](https://nodejs.dev/learn/how-to-install-nodejs)
+[Learn more about installing Nodejs](https://nodejs.dev/en/learn/how-to-install-nodejs/)
 
 > 😳 **Need help?** Try searching the [Community](https://community.draftbit.com) &mdash; which are a great resource for troubleshooting.
-
-## Installing Expo CLI
-
-You can install the Expo CLI using the following command. *This is the one spot where npm install is required!*
-
-```
-$ npm install -g expo-cli
-```
-
-Verify that the installation was successful by running `expo whoami`. You're not logged in yet, so you will see "Not logged in". You can create an account by running `expo register` if you like, or if you have one already run `expo login`, but you also don't need an account to get started.
-
-[Learn more about Expo CLI here](https://docs.expo.io/get-started/installation/#installing-expo-cli)
-
 
 ## Install Project Dependencies
 
@@ -87,12 +73,17 @@ $ yarn
 > the correct dependencies. You should replace `Desktop/New-App` with the actual
 > path to your unzipped project folder.
 
+## Log In to Expo
+
+Verify that the installation was successful by running `npx expo whoami`. You're not logged in yet, so you will see "Not logged in". You can create an account by running `npx expo register` if you like, or if you have one already run `npx expo login`, but you also don't need an account to get started.
+
+[Learn more about Expo CLI here](https://docs.expo.io/get-started/installation/#installing-expo-cli)
+
 ## Running
 
 To start your project, simply run: `yarn start` inside of the project directory
-(make sure you've [installed the dependencies
-locally](#install-local-dependencies) first). This should open the Expo
-developer tools in a browser tab.
+(make sure you've [installed the project dependencies](#install-project-dependencies) first). This should open the Expo
+developer tools in the command line.
 
 ### Running in an emulator
 
@@ -103,6 +94,7 @@ emulator, see the installation instructions below.
 - [iOS Simulator](https://docs.expo.io/workflow/ios-simulator/)
 - [Android Studio](https://docs.expo.io/workflow/android-studio-emulator/)
 
+After installing and launching the emulator, and while in the command line, type `a` to launch on the Android emulator or `i` to launch on the IOS simulator. You can also press `w` to launch on web.
 
 ### Running on your Android or iOS Device
 
@@ -111,16 +103,19 @@ The fastest way to get up and running is to use the Expo Go app on your iOS or A
 - 🤖 [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent) - Android Lollipop (5) and greater.
 - 🍎 [iOS App Store](https://itunes.com/apps/exponent) - iOS 11 and greater.
 
+After installing, scan the barcode you see in the command line.
+
+> If you are using custom packages, then there is a chance your app will not run on Expo Go. In that case, you need to [create your own build of the app](https://docs.expo.dev/build/setup/)
+
 ## File Structure
 
 ```
 .
     ├── assets                 # Static assets like images and fonts.
-    ├── config                 # JS representation of fonts, images, themes, and more
-        └── Themes.js          # Example file for your app's themes
+    ├── config                 # JS representation of fonts, images, and more
     ├── screens                # React Native code for the screens you built.
     │   └── MyFirstScreen.js   # Example file for the screen named "My First Screen"
-    ├── components.js          # All your custom components
+    ├── themes                 # JS representation of the theme
     ├── .gitignore             # List of files to ignore when comitting with Git
     ├── App.js                 # Entry point for your app
     ├── app.json               # Configuration file for your app, used by Expo
@@ -131,16 +126,16 @@ The fastest way to get up and running is to use the Expo Go app on your iOS or A
 
 ## Publishing your app to the App Store
 
-Expo has really great documentation for how to get started. [Click here](https://docs.expo.io/distribution/building-standalone-apps/) to learn more.
+Expo has really great documentation for how to get started. [Click here](https://docs.expo.dev/build/setup/) to learn more.
 
 ## Troubleshooting
 
-Any errors that may occur in the process of developing or testing your app will show up as a "Redbox" error on the testing device. A red box will be show on the device with the error message and stack trace for the error. The Expo documentation has [more information about Redbox errors](https://docs.expo.io/get-started/errors/#redbox-errors-and-stack-traces).
+Any errors that may occur in the process of developing or testing your app will show up as a "Redbox" error on the testing device. A red box will be show on the device with the error message and stack trace for the error. The Expo documentation has [more information about Redbox errors](https://docs.expo.dev/debugging/errors-and-warnings).
 
 Compilation errors or errors occurring when the expo process tries to execute
-commands will also show up in the browser. If you cannot fix these errors, you
+commands will also show up in the command line. If you cannot fix these errors, you
 should refer to Expo's documentation on [debugging
-Javascript](https://docs.expo.io/workflow/debugging/).
+Javascript](https://docs.expo.dev/debugging/runtime-issues).
 
 ## FAQ
 
@@ -153,10 +148,8 @@ Javascript](https://docs.expo.io/workflow/debugging/).
 - _How do I build a binary for the App and Play store?_
 
   Expo published an [excellent
-  guide](https://docs.expo.io/versions/latest/distribution/app-stores/) for
-  deploying to the Apple iTunes Store and the Google Play Store. Moreover, for
-  users with an iOS Enterprise certifcate, [Expo has information about using
-  the certificate to build your apps](https://docs.expo.io/versions/latest/distribution/building-standalone-apps/#if-you-choose-to-build-for-ios).
+  guide](https://docs.expo.dev/build/setup/) for
+  deploying to the Apple App Store and the Google Play Store.
 
 - _What/where is the license for this code?_
 
@@ -166,11 +159,10 @@ Javascript](https://docs.expo.io/workflow/debugging/).
 
 - _Can I run Expo web with this?_
 
-  Of course! See [this](https://docs.expo.io/versions/v37.0.0/bare/using-web/#__next) guide by Expo for running your React Native app in
+  Of course! See [this](https://docs.expo.dev/workflow/web/) guide by Expo for running your React Native app in
   a web browser.
 
 - _What libraries does this code depend on?_
 
   You can see the full list in your projects `package.json` file (under the
-  `dependencies` section), but a few of our dependencies are `react-navigation`,
-  `react-native-screens`, and `expo-av`.
+  `dependencies` section).

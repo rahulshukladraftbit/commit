@@ -5,14 +5,22 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
-import { View, Text, ActivityIndicator, AppState } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  ActivityIndicator,
+  AppState,
+} from 'react-native';
 import { Provider as ThemeProvider } from '@draftbit/ui';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import AppNavigator from './AppNavigator';
-import DraftbitTheme from './themes/DraftbitTheme.js';
+import Draftbit from './themes/Draftbit.js';
 import cacheAssetsAsync from './config/cacheAssetsAsync';
 import { GlobalVariableProvider } from './config/GlobalVariableContext';
+import { useFonts } from 'expo-font';
+import Fonts from './config/Fonts.js';
 SplashScreen.preventAutoHideAsync();
 
 Notifications.setNotificationHandler({
@@ -26,8 +34,13 @@ Notifications.setNotificationHandler({
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isReady, setIsReady] = React.useState(false);
-  const fontsLoaded = true;
+  const [areAssetsCached, setAreAssetsCached] = React.useState(false);
+
+  const [fontsLoaded] = useFonts({
+    Rubik_400Regular: Fonts.Rubik_400Regular,
+    Rubik_600SemiBold: Fonts.Rubik_600SemiBold,
+    Rubik_700Bold: Fonts.Rubik_700Bold,
+  });
 
   React.useEffect(() => {
     async function prepare() {
@@ -36,20 +49,21 @@ const App = () => {
       } catch (e) {
         console.warn(e);
       } finally {
-        setIsReady(true);
+        setAreAssetsCached(true);
       }
     }
 
     prepare();
   }, []);
 
+  const isReady = areAssetsCached && fontsLoaded;
   const onLayoutRootView = React.useCallback(async () => {
-    if (isReady && fontsLoaded) {
+    if (isReady) {
       await SplashScreen.hideAsync();
     }
-  }, [isReady, fontsLoaded]);
+  }, [isReady]);
 
-  if (!isReady || !fontsLoaded) {
+  if (!isReady) {
     return null;
   }
 
@@ -60,7 +74,7 @@ const App = () => {
     >
       <GlobalVariableProvider>
         <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={DraftbitTheme}>
+          <ThemeProvider theme={Draftbit}>
             <AppNavigator />
           </ThemeProvider>
         </QueryClientProvider>

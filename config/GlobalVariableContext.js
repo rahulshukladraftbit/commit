@@ -3,10 +3,11 @@ import { View, ActivityIndicator } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const DeviceVariables = {};
-const AppVariables = {};
+export const DeviceVariables = { __env__: 'Development' };
+export const AppVariables = {};
 const GlobalVariableContext = React.createContext();
 const GlobalVariableUpdater = React.createContext();
+const keySuffix = '';
 
 // Attempt to parse a string as JSON. If the parse fails, return the string as-is.
 // This is necessary to account for variables which are already present in local
@@ -29,7 +30,7 @@ class GlobalVariable {
   static async syncToLocalStorage(values) {
     const update = Object.entries(values)
       .filter(([key]) => key in DeviceVariables)
-      .map(([key, value]) => [key, JSON.stringify(value)]);
+      .map(([key, value]) => [key + keySuffix, JSON.stringify(value)]);
 
     if (update.length > 0) {
       await AsyncStorage.multiSet(update);
@@ -39,14 +40,19 @@ class GlobalVariable {
   }
 
   static async loadLocalStorage() {
-    const entries = await AsyncStorage.multiGet(Object.keys(DeviceVariables));
+    const keys = Object.keys(DeviceVariables);
+    const entries = await AsyncStorage.multiGet(
+      keySuffix ? keys.map(k => k + keySuffix) : keys
+    );
 
     // If values isn't set, use the default. These will be written back to
     // storage on the next render.
-    const withDefaults = entries.map(([key, value]) => [
-      key,
-      value ? tryParseJson(value) : DeviceVariables[key],
-    ]);
+    const withDefaults = entries.map(([key_, value]) => {
+      // Keys only have the suffix appended in storage; strip the key
+      // after they are retrieved
+      const key = keySuffix ? key_.replace(keySuffix, '') : key_;
+      return [key, value ? tryParseJson(value) : DeviceVariables[key]];
+    });
 
     return Object.fromEntries(withDefaults);
   }
@@ -102,7 +108,21 @@ export function GlobalVariableProvider({ children }) {
     async function initialStorageLoader() {
       try {
         const payload = await GlobalVariable.loadLocalStorage();
-        dispatch({ type: 'LOAD_FROM_ASYNC_STORAGE', payload });
+        if (
+          payload?.__env__ &&
+          DeviceVariables.__env__ &&
+          payload.__env__ !== DeviceVariables.__env__
+        ) {
+          console.log(
+            `Publication Environment changed from ${payload.__env__} to ${DeviceVariables.__env__}. Refreshing variables`
+          );
+          dispatch({
+            type: 'LOAD_FROM_ASYNC_STORAGE',
+            payload: DeviceVariables,
+          });
+        } else {
+          dispatch({ type: 'LOAD_FROM_ASYNC_STORAGE', payload });
+        }
       } catch (err) {
         console.error(err);
       }

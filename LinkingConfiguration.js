@@ -6,6 +6,7 @@
 
 import * as Linking from 'expo-linking';
 import { Platform } from 'react-native';
+
 function renderLinkingPrefix() {
   try {
     return Linking.createURL('/');
@@ -15,6 +16,7 @@ function renderLinkingPrefix() {
 }
 
 const prefix = renderLinkingPrefix();
+
 const linking = {
   enabled: Platform.OS === 'web' ? false : true,
   prefixes: [prefix],

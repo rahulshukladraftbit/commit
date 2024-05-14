@@ -22,7 +22,7 @@ expect {
     "*Waiting in Free tier queue*" {
         send_user "*** DRAFTBIT - BUILD QUEUED ***"
         exit 0
-        }              
+        }
     timeout {
         send_user "*** DRAFTBIT - PRE BUILD TIMEOUT ***"
         exit 1
@@ -48,7 +48,7 @@ expect {
     "*Waiting in Free tier queue*" {
         send_user "*** DRAFTBIT - BUILD QUEUED ***"
         exit 0
-        }  
+        }
     timeout {
         send_user "*** DRAFTBIT - POST BUILD TIMEOUT ***"
         exit 1
